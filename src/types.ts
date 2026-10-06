@@ -64,7 +64,7 @@ export interface JobApplication {
   offerUrl: string
   source: Source
   contact: string
-  followUpAt: string  // date au format AAAA-MM-JJ
+  followUpAt: string  // date au format AAAA-MM-JJ, peut être vide
   notes: string       // peut être vide
   createdAt: string   // date et heure ISO, remplie automatiquement
   updatedAt: string   // date et heure ISO, remplie automatiquement

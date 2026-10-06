@@ -1,5 +1,6 @@
 import { STATUSES, SOURCES, type JobApplication, type Status, type Source } from './types'
 
+
 export type ApplicationDraft = Omit<JobApplication, 'id' | 'createdAt' | 'updatedAt'>
 
 export type FieldErrors = Partial<Record<keyof ApplicationDraft, string>>
@@ -11,7 +12,7 @@ export type ValidationResult =
 const MAX_TEXT = 200
 const MAX_NOTES = 5000
 
-const DRAFT_FIELDS: (keyof ApplicationDraft)[] = [
+export const DRAFT_FIELDS: (keyof ApplicationDraft)[] = [
   'company', 'position', 'status', 'appliedAt', 'offerUrl',
   'source', 'contact', 'followUpAt', 'notes',
 ]
@@ -51,8 +52,8 @@ function checkText(value: string, label: string, max: number, required: boolean)
   return undefined
 }
 
-function checkDate(value: string, label: string): string | undefined {
-  if (!value) return `${label} obligatoire`
+function checkDate(value: string, label: string, required: boolean): string | undefined {
+  if (!value) return required ? `${label} obligatoire` : undefined
   if (!isValidDate(value)) return 'Date invalide'
   return undefined
 }
@@ -77,8 +78,8 @@ export function validateDraft(input: Record<string, unknown>): ValidationResult 
   set('position', checkText(position, 'Poste', MAX_TEXT, true))
   set('contact', checkText(contact, 'Contact', MAX_TEXT, true))
   set('notes', checkText(notes, 'Notes', MAX_NOTES, false))
-  set('appliedAt', checkDate(appliedAt, 'Date de candidature'))
-  set('followUpAt', checkDate(followUpAt, 'Date de relance'))
+  set('appliedAt', checkDate(appliedAt, 'Date de candidature', true))
+  set('followUpAt', checkDate(followUpAt, 'Date de relance', false))
 
   if (!offerUrl) set('offerUrl', "Lien de l'offre obligatoire")
   else if (!isSafeUrl(offerUrl)) set('offerUrl', 'Le lien doit commencer par http:// ou https://')
