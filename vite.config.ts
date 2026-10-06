@@ -11,7 +11,7 @@ export default defineConfig({
       // Enregistrement via un fichier .js séparé, pas de script inline (compatible CSP)
       injectRegister: 'script',
 
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['icons/*.png'],
 
       manifest: {
         name: 'Job Tracker 2026',
@@ -24,7 +24,7 @@ export default defineConfig({
         icons: [
           { src: 'icons/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/pwa-512x512.png', sizes: '512x512', type: 'image/png' },
-          { src: 'icons/pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icons/pwa-maskable-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
     }),
