@@ -158,5 +158,16 @@ export function initUI(): void {
   deleteButton.addEventListener('click', handleDelete)
   form.addEventListener('submit', handleSubmit)
 
+  // Toucher n'importe où dans un champ date ouvre le calendrier
+  for (const input of form.querySelectorAll<HTMLInputElement>('input[type="date"]')) {
+    input.addEventListener('click', () => {
+      try {
+        input.showPicker()
+      } catch {
+        // Navigateur sans showPicker : on garde le comportement natif
+      }
+    })
+  }
+
   renderList(loadApplications())
 }
