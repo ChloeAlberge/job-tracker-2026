@@ -7,7 +7,82 @@
     <title>Job Tracker 2026</title>
   </head>
   <body>
-    <div id="app"></div>
+    <header class="header">
+      <h1>Job Tracker 2026</h1>
+      <button type="button" id="add-button">+ Nouvelle candidature</button>
+    </header>
+
+    <main>
+      <p id="empty-message" hidden>Aucune candidature pour l'instant.</p>
+      <ul id="application-list"></ul>
+    </main>
+
+    <dialog id="application-dialog">
+      <form id="application-form" novalidate>
+        <h2 id="form-title">Nouvelle candidature</h2>
+
+        <label>
+          Entreprise
+          <input type="text" name="company" maxlength="200" required />
+          <span class="error" data-error-for="company"></span>
+        </label>
+
+        <label>
+          Poste
+          <input type="text" name="position" maxlength="200" required />
+          <span class="error" data-error-for="position"></span>
+        </label>
+
+        <label>
+          Statut
+          <select name="status" required></select>
+          <span class="error" data-error-for="status"></span>
+        </label>
+
+        <label>
+          Date de candidature
+          <input type="date" name="appliedAt" required />
+          <span class="error" data-error-for="appliedAt"></span>
+        </label>
+
+        <label>
+          Lien de l'offre
+          <input type="url" name="offerUrl" placeholder="https://" required />
+          <span class="error" data-error-for="offerUrl"></span>
+        </label>
+
+        <label>
+          Source
+          <select name="source" required></select>
+          <span class="error" data-error-for="source"></span>
+        </label>
+
+        <label>
+          Contact
+          <input type="text" name="contact" maxlength="200" required />
+          <span class="error" data-error-for="contact"></span>
+        </label>
+
+        <label>
+          Date de relance
+          <input type="date" name="followUpAt" required />
+          <span class="error" data-error-for="followUpAt"></span>
+        </label>
+
+        <label>
+          Notes
+          <textarea name="notes" rows="4" maxlength="5000"></textarea>
+          <span class="error" data-error-for="notes"></span>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" id="delete-button" hidden>Supprimer</button>
+          <button type="button" id="cancel-button">Annuler</button>
+          <button type="submit">Enregistrer</button>
+        </div>
+      </form>
+    </dialog>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
