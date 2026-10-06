@@ -113,7 +113,7 @@ function openDialog(app?: JobApplication): void {
   form.reset()
   showErrors({})
   editingId = app?.id ?? null
-  formTitle.textContent = app ? 'Modifier la candidature' : 'Nouvelle candidature'
+  formTitle.textContent = app ? 'Modifier la bouteille' : 'Nouvelle bouteille à la mer'
   deleteButton.hidden = !app
 
   if (app) {
@@ -142,7 +142,7 @@ function handleSubmit(event: SubmitEvent): void {
 }
 
 function handleDelete(): void {
-  if (!editingId || !confirm('Supprimer cette candidature ?')) return
+  if (!editingId || !confirm("Supprimer cette candidature ? (Eux l'ont sûrement déjà fait.)")) return
   renderList(deleteApplication(editingId))
   dialog.close()
 }
